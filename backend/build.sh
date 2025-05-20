@@ -1,10 +1,13 @@
 #!/usr/bin/env bash
-# Exit on error
-set -o errexit
+set -e  # Exit on error
 
-# Install system dependencies
-pip install --upgrade pip
+# Update pip and setuptools
+python -m pip install --upgrade pip setuptools wheel
+
+# Install dependencies
 pip install -r requirements.txt
 
-# Apply database migrations (if any)
-# python -m alembic upgrade head
+# Create a simple startup script
+echo '#!/bin/bash' > start.sh
+echo 'uvicorn app:app --host 0.0.0.0 --port $PORT --workers 1' >> start.sh
+chmod +x start.sh

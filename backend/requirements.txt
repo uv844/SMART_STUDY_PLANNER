@@ -1,10 +1,9 @@
 fastapi==0.104.1
-uvicorn[standard]==0.24.0
+uvicorn==0.24.0
 python-dotenv==1.0.0
 pydantic==2.4.2
 sqlalchemy==2.0.23
-python-jose==3.3.0  # Removed [cryptography] as it's causing issues
-cryptography==41.0.7  # Explicitly add cryptography with version
+PyJWT==2.8.0  # Using PyJWT instead of python-jose
 passlib[bcrypt]==1.7.4
 python-multipart==0.0.6
 alembic==1.12.1
