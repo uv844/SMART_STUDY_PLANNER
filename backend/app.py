@@ -1,11 +1,20 @@
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
-from pydantic import BaseModel
-from typing import List, Dict
+from pydantic import BaseModel, validator
+from typing import List, Dict, Optional
 from datetime import datetime, timedelta
 import json
+import os
+
+# For Railway deployment
+from fastapi.responses import JSONResponse
 
 app = FastAPI(title="Smart Study Planner API")
+
+# Root endpoint for health checks
+@app.get("/")
+async def root():
+    return {"message": "Smart Study Planner API is running"}
 
 # Configure CORS
 app.add_middleware(
